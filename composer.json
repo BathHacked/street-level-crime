@@ -1,0 +1,19 @@
+{
+  "name": "bathhacked/street-level-crime",
+  "description": "Extract BANES street level crime & upload to Socrate datastore",
+  "require": {
+    "guzzlehttp/guzzle": "^6.1",
+    "nesbot/carbon": "dev-master",
+    "rappasoft/laravel-helpers": "dev-master"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-0": {"BathHacked": "src"}
+  },
+  "authors": [
+    {
+      "name": "Mark Owen",
+      "email": "mark@bathhacked.org"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'base_uri' => 'https://YOUR_SOCRATA_URL',
+    'app_token' => 'YOUR_APP_TOKEN',
+    'email' => 'YOUR_LOGIN_EMAIL',
+    'password' => 'YOUR_LOGIN_PASSWORD',
+    'resource_path' => '/resource/YOUR_RESOURCE_EG_XY12_34ZA.json',
+];
