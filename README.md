@@ -1,7 +1,7 @@
 
 # UK Street Level Crime Updater
 
-As set of tools for fetching a geographic subset of data.police.uk street level crimes & optionally uploading to a Socrata dataset.
+A set of tools for fetching a geographic subset of data.police.uk street level crimes & optionally uploading to a Socrata dataset.
 
 ## Install
 
