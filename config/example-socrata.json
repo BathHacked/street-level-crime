@@ -1,0 +1,7 @@
+{
+  "base_uri": "https://yourdatastore.com",
+  "app_token": "YOUR_APP_TOKEN",
+  "email": "YOUR_SOCRATA_LOGIN_EMAIL",
+  "password": "YOUR_SOCRATA_LOGIN_PASSWORD",
+  "resource_path": "/resource/abcd-xyz.json"
+}

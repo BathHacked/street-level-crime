@@ -14,43 +14,50 @@ All scripts reside in the ```bin``` folder.
 To create the geographic subset, you will require a file containing the boundary points. The points should be in the format :-
 
     lat1,lng1:lat2,lng2:...:latN,lngN
-
-If you wish to upload data to a Socrata dataset, copy the file ```config/socrata.php.example``` to ```config/socrata.php``` & edit the settings accordingly.
+    
+We've included a Bath & North East Somerset boundary file by way of example.
 
 ## Fetch crime data
 
 To fetch the crime data use the following :-
 
-    php fetch-all.php path-to-boundary-file.txt
+    php fetch-all.php path-to/boundary-file.txt [look-back-months]
     
-The script takes a second integer argument which allows you to specify the maximum number of months to look back before this month. 
+The optional second argument specifies the maximum number of months to look back before this month. 
 For example, to update the past year's crimes do the following :- 
 
-    php fetch-all.php path-to-boundary-file.txt 12
+    php fetch-all.php path-to/boundary-file.txt 12
 
-It outputs a JSON encoding of the data on stdout.
+It outputs a flat JSON encoding of the data on stdout.
 
 ## Convert to CSV
 
 Before uploading the data to Socrata we need to convert the JSON format to CSV format.
 
-    php to-csv.php < path-to-json-file.json
+    php to-csv.php [path-to/map-file.json] < path-to/json-file.json 
     
 The script takes the JSON file on stdin and puts a CSV file to stdout.
 
+The optional argument allows you to specify a mapping between the extracted fields and your target fields. 
+Fields can be omitted. See ```config/default-map.json``` for the default fields.
+    
 The CSV file can be uploaded directly to Socrata to allow you to initially set up the dataset.
 
 ## Upload the data to Socrata
 
-This will do an _upsert_ on your dataset based on the identifier for each crime. __Remember to make ```id``` the Row Identifier for your dataset.__
+__Remember to add a Row Identifier for your dataset.__
 
-    php update-socrata.php < path-to-csv-file.csv
+    php update-socrata.php path-to/socrata-config.json [replace|update]< path-to/csv-file.csv
+    
+The first required argument specifies a config file, containing your Socrata credentials. See ```config/example-socrata.json```.
+
+The second optional argument specifies whether the dataset should be updated (upsert) or replaced. The default is update.
     
 ## Putting it all together
 
 We can chain all of these scripts together :-
 
-    php fetch-all.php path-to-boundary-file.txt 12 | php to-csv.php | php update-socrata.php
+    php fetch-all.php path-to/boundary-file.txt 12 | php to-csv.php | php update-socrata.php path-to/socrata-config.json
     
 
 ## License

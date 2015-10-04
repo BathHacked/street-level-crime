@@ -1,0 +1,16 @@
+{
+  "id": "id",
+  "month": "month",
+  "category": "category",
+  "context": "context",
+  "location_latitude": "location_latitude",
+  "location_longitude": "location_longitude",
+  "location_street_name": "location_street_name",
+  "location_street_id": "location_street_id",
+  "location_type": "location_type",
+  "location_subtype": "location_subtype",
+  "location": "location",
+  "outcome_status": "outcome_status",
+  "outcome_status_category": "outcome_status_category",
+  "outcome_status_date": "outcome_status_date"
+}

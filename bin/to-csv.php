@@ -4,7 +4,7 @@ $json = file_get_contents('php://stdin');
 
 $items = json_decode($json, true);
 
-$header = [
+$fields = [
     'id',
     'month',
     'category',
@@ -21,15 +21,36 @@ $header = [
     'outcome_status_date',
 ];
 
-fputcsv(STDOUT, $header);
+if($argc == 2)
+{
+    if(!is_file($argv[1]))
+    {
+        fwrite(STDERR, "Invalid map file" . PHP_EOL);
+        exit;
+    }
+
+    $map = json_decode(file_get_contents($argv[1]), true);
+
+    if(!is_array($map))
+    {
+        fwrite(STDERR, "Invalid map file" . PHP_EOL);
+        exit;
+    }
+}
+else
+{
+    $map = array_combine($fields, $fields);
+}
+
+fputcsv(STDOUT, array_values($map));
 
 foreach($items as $item)
 {
     $row = [];
 
-    foreach($header as $index => $col)
+    foreach($map as $from => $to)
     {
-        $row[] = isset($item[$col]) ? $item[$col] : null;
+        $row[] = isset($item[$from]) ? $item[$from] : null;
     }
 
     fputcsv(STDOUT, $row);

@@ -60,7 +60,7 @@ class DatasetUpdater
      * @param string $payload
      * @return array
      */
-    public function update($path, $payload)
+    public function update($path, $payload, $mode = 'update')
     {
         $options = array(
             'body' => $payload,
@@ -72,7 +72,9 @@ class DatasetUpdater
             'auth' => [$this->email, $this->password],
         );
 
-        $response = $this->client->request('POST', $path, $options);
+        $verb = $mode == 'replace' ? 'PUT' : 'POST';
+
+        $response = $this->client->request($verb, $path, $options);
 
         $response = $response->getBody()->getContents();
 

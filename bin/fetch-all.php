@@ -11,7 +11,8 @@ use \Carbon\Carbon;
 
 if($argc < 2)
 {
-    die("Boundary file path is required");
+    fwrite(STDERR, "Boundary file path is required" . PHP_EOL);
+    exit;
 }
 
 $boundaryFile = $argv[1];
@@ -19,8 +20,8 @@ $lookbackMonths = $argc == 3 ? $argv[2] : null;
 
 if(!is_file($boundaryFile))
 {
-    echo PHP_EOL, "Boundary file is not a file: ", $boundaryFile, PHP_EOL, PHP_EOL;
-    $command->displayHelp();
+    fwrite(STDERR, "Boundary file is not a file: " . $boundaryFile . PHP_EOL);
+    exit;
 }
 
 $boundary = file_get_contents($boundaryFile);
