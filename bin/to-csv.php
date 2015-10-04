@@ -4,6 +4,12 @@ $json = file_get_contents('php://stdin');
 
 $items = json_decode($json, true);
 
+if(!is_array($items))
+{
+    fwrite(STDERR, 'Invalid input JSON' . PHP_EOL);
+    exit;
+}
+
 $fields = [
     'id',
     'month',
